@@ -5,7 +5,10 @@ import React from 'react'
 const CustomTextInput = ({children, ...otherProps})=> {
   return (
     <View style={styles.textIputContainer}>
-       <TextInput placeholder={otherProps.placeholder} cursorColor='green' />
+       <TextInput 
+        placeholder={otherProps.placeholder} 
+       cursorColor='green' 
+       secureTextEntry={otherProps.secureTextEntry} />
     </View>
   )
 }
@@ -16,6 +19,7 @@ const styles = StyleSheet.create({
         padding:15,
         borderRadius:15,
         marginVertical:10,
+        borderWidth:1,
     }
 })
 export default CustomTextInput;

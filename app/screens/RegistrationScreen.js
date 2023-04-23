@@ -9,12 +9,12 @@ import CustomTextInput from '../components/CustomTextInput';
 import CustomButton from '../components/CustomButton';
 import CustomTextButton from '../components/CustomTextButton';
 
-const RegistrationScreen = ({children})=> {
+const RegistrationScreen = ({children,navigation})=> {
     return (
         <Screen>
          <ScrollView contentContainerStyle={styles.scrollview}>
             <View style={styles.upperContainer}>
-                <Text style={styles.dataloc}>Flowpy</Text>
+                <Text style={styles.dataloc}>eDir</Text>
             </View>
             <Text style={styles.welcomeText}>Welcome! Create new account.</Text>
             <View style={styles.middleContainer}>
@@ -22,14 +22,14 @@ const RegistrationScreen = ({children})=> {
               <CustomTextInput placeholder = 'Last Name' />
               <CustomTextInput placeholder = 'username' />
               <CustomTextInput placeholder = 'Email' />
-              <CustomTextInput placeholder = 'Password' />
-              <CustomTextInput placeholder = 'Confirm Password' />
+              <CustomTextInput placeholder = 'Password' secureTextEntry={true}/>
+              <CustomTextInput placeholder = 'Confirm Password' secureTextEntry={true} />
               <CustomButton title="Signup" />
               
             </View>
             <View style={styles.bottomContainer}>
                 <Text style={styles.askingUserQuestion}>Already have an account?</Text>
-                <CustomTextButton title="Login"/>
+                <CustomTextButton onPress={()=>navigation.navigate('login')} title="Login"/>
             </View>
          </ScrollView>
         </Screen>

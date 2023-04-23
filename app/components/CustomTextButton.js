@@ -1,9 +1,9 @@
 import { TouchableOpacity,Text,StyleSheet} from 'react-native';
 
-const CustomTextButton = ({children,...otherProps})=> {
+const CustomTextButton = ({children,title,onPress})=> {
   return (
-    <TouchableOpacity>
-     <Text style={styles.textButton}>{otherProps.title}</Text>
+    <TouchableOpacity onPress={onPress}>
+     <Text style={styles.textButton}>{title}</Text>
     </TouchableOpacity>
   )
 }

@@ -4,7 +4,7 @@ import CustomTextInput from '../components/CustomTextInput';
 import CustomButton from '../components/CustomButton';
 import CustomTextButton from '../components/CustomTextButton';
 
-const LoginScreen = ({children})=> {
+const LoginScreen = ({children,navigation})=> {
     return (
         <Screen>
          <ScrollView style={styles.scrollview}>
@@ -15,7 +15,7 @@ const LoginScreen = ({children})=> {
             <Text style={styles.welcomeText}>Login again!</Text>
             <View style={styles.middleContainer}>
               <CustomTextInput placeholder = 'Email' />
-              <CustomTextInput placeholder = 'Password' />
+              <CustomTextInput placeholder = 'Password' secureTextEntry={true} />
 
               <CustomButton title="Login" />
               
@@ -24,7 +24,7 @@ const LoginScreen = ({children})=> {
             <CustomTextButton title="Forgot password?"/>
             <View style={styles.bottomContainer}>
                 <Text style={styles.askingUserQuestion}>Don't have an account?</Text>
-                <CustomTextButton title="Create Account" />
+                <CustomTextButton onPress={()=>navigation.navigate('register')} title="Create Account" />
             </View>
             </View>
          </ScrollView>
