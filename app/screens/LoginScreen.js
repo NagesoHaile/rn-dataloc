@@ -1,4 +1,7 @@
+import React from 'react'
+
 import { View,Text,TextInput,StyleSheet,ScrollView } from 'react-native'
+import { Formik } from 'formik';
 import Screen from './Screen';
 import CustomTextInput from '../components/CustomTextInput';
 import CustomButton from '../components/CustomButton';
@@ -8,6 +11,7 @@ import CustomTextButton from '../components/CustomTextButton';
 const LoginScreen = ({children,navigation})=> {
     return (
         <Screen>
+        
          <ScrollView style={styles.scrollview}>
             <View style={styles.upperContainer}>
                 <Text style={styles.dataloc}>eDir</Text>
@@ -15,11 +19,35 @@ const LoginScreen = ({children,navigation})=> {
             <Text style={styles.welcomeText}>Welcome Back</Text>
             <Text style={styles.welcomeText}>Login again!</Text>
             <View style={styles.middleContainer}>
-              <CustomTextInput placeholder = 'Email' />
-              <CustomTextInput placeholder = 'Password' secureTextEntry={true} />
+            <Formik 
+            initialValues = {{email: '', password: ''}}
+            onSubmit={values=>console.log(values)}
+            >
+                {({handleChange,handleSubmit})=>(
+            <>
+            <CustomTextInput 
+              placeholder = 'Email' 
+              autoCapitalize = "none"
+              textContentType = "emailAddress"
+              keyboardType = "email-address"
+              onChangeText = {handleChange("email")}
+              />
+              <CustomTextInput 
+              placeholder = 'Password' 
+              autoCapitalize = "none"
+              autoCorrect = {false}
+              secureTextEntry={true}
+              textContentType = "password"
+              onChangeText={handleChange("password")}
+               />
 
-              <CustomButton title="Login" />
+              <CustomButton 
+              title="Login"  
+              onPress={handleSubmit}/>
+              </>
+                )}
               
+            </Formik>
             </View>
             <View style={styles.bottomOuterContainer}>
             <CustomTextButton title="Forgot password?"/>
