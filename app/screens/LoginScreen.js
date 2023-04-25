@@ -1,17 +1,23 @@
-import React from 'react'
-
+import React, { useState } from 'react'
 import { View,Text,TextInput,StyleSheet,ScrollView } from 'react-native'
 import { Formik } from 'formik';
 import Screen from './Screen';
 import CustomTextInput from '../components/CustomTextInput';
 import CustomButton from '../components/CustomButton';
 import CustomTextButton from '../components/CustomTextButton';
+import authApi from '../api/authentication';
 
+ const LoginScreen = ({children,navigation})=> {
+     const [loginFailed,setLoginFailed] = useState(false);
 
-const LoginScreen = ({children,navigation})=> {
+    const handleSubmit = async ({username,password}) => {
+        const result = await authApi.login(username,password);
+        if(!result.ok) return setLoginFailed(true);
+        setLoginFailed(false);
+        console.log(result.data);
+    }
     return (
         <Screen>
-        
          <ScrollView style={styles.scrollview}>
             <View style={styles.upperContainer}>
                 <Text style={styles.dataloc}>eDir</Text>
@@ -21,7 +27,8 @@ const LoginScreen = ({children,navigation})=> {
             <View style={styles.middleContainer}>
             <Formik 
             initialValues = {{email: '', password: ''}}
-            onSubmit={values=>console.log(values)}
+            onSubmit={handleSubmit}
+            
             >
                 {({handleChange,handleSubmit})=>(
             <>
